@@ -1,8 +1,8 @@
-# RL<img src="https://render.githubusercontent.com/render/math?math=^{2}">: Fast Reinforcement Learning via Slow Reinforcement Learning
+# <img src="https://render.githubusercontent.com/render/math?math=RL^{2}">: Fast Reinforcement Learning via Slow Reinforcement Learning
 
 # Summary of the Paper
 
-_Title: RL$^2$: Fast Reinforcement Learning via Slow Reinforcement Learning_
+_Title: <img src="https://render.githubusercontent.com/render/math?math=RL^{2}">: Fast Reinforcement Learning via Slow Reinforcement Learning_
 _Authors: Yan Duan, John Schulman, Xi Chen, Peter L. Bartlett, Ilya Sutskever, Pieter Abbeel_
 
 The paper proposes the use of recurrent models (GRUs) as meta learners across different RL tasks (essentially, different MDPs). This helps incorporate priors into the learning task. The authors propose this as an attempt to alleviate the following problems:
