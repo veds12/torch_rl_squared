@@ -1,4 +1,4 @@
-# <img src="https://render.githubusercontent.com/render/math?math=RL^{2}">: Fast Reinforcement Learning via Slow Reinforcement Learning
+# RL2: Fast Reinforcement Learning via Slow Reinforcement Learning
 
 # Summary of the Paper
 
@@ -10,11 +10,10 @@ The paper proposes the use of recurrent models (GRUs) as meta learners across di
 - High sample complexity of RL algorithms
 - Need of tailoring domain-specific reinforcement learning algorithms
 
-The approach consists of sampling an MDP from a distribution of MDPs $\mathcal{M}$. Learning on each MDP is referred to as a trial and each trial consists of a fixed number of episodes. After every time step in an episode, the next state, action (that lead to that state), reward (corresponding to the action), and the termination flags are passed to the agent (policy) as input which generates a new hidden state, and the next action from the policy conditioned on the previous hidden states. The hidden states are retained across different episodes of the same task but aren't retained across different tasks. The algorithm used in the paper is TRPO and the approach is evaluated on two fairly simple tasks: Multi-armed bandits and a Tabular RL setting and on a Visual Navigation setting (VizDom) showing that this meta-reinforcement learning algorithm can scale to fairly complex tasks. Another paper (Learning to Reinforcement Learn)$^{[1]}$ from Deepmind published shortly after this proposes a very similar approach for meta reinforcement learning. 
+The approach consists of sampling an MDP from a distribution of MDPs <img src="https://render.githubusercontent.com/render/math?math=\mathcal{M}">. Learning on each MDP is referred to as a trial and each trial consists of a fixed number of episodes. After every time step in an episode, the next state, action (that lead to that state), reward (corresponding to the action), and the termination flags are passed to the agent (policy) as input which generates a new hidden state, and the next action from the policy conditioned on the previous hidden states. The hidden states are retained across different episodes of the same task but aren't retained across different tasks. The algorithm used in the paper is TRPO and the approach is evaluated on two fairly simple tasks: Multi-armed bandits and a Tabular RL setting and on a Visual Navigation setting (VizDom) showing that this meta-reinforcement learning algorithm can scale to fairly complex tasks. Another paper (Learning to Reinforcement Learn)<img src="https://render.githubusercontent.com/render/math?math=^{[1]}"> from Deepmind published shortly after this proposes a very similar approach for meta reinforcement learning. 
 
 ![Untitled.png](images/Untitled.png)
-
-                                              Procedure of Environment Agent Interaction$^{[2]}$
+Procedure of Environment Agent Interaction<img src="https://render.githubusercontent.com/render/math?math=^{[2]}">
 
 # Notebook Setup Details
 
@@ -31,7 +30,7 @@ The approach consists of sampling an MDP from a distribution of MDPs $\mathcal{
 ## Environment (Tasks)
 
 - A simple tabular environment taken and modified from [TabulaRL](https://github.com/iosband/TabulaRL/blob/master/src/environment.py) has been used for all the experiments and ablations
-- A modified riverSwim$^{[3]}$ task has been used throughout the notebook.
+- A modified riverSwim<img src="https://render.githubusercontent.com/render/math?math=^{[3]}"> task has been used throughout the notebook.
     - Number of States used = 10 (Can be changed)
     - Number of actions per state = 2 (Property of the environment)
     - Episode Length used = 20 (Can be changed)
@@ -66,7 +65,7 @@ The approach consists of sampling an MDP from a distribution of MDPs $\mathcal{
 
 ### Experiment 1 : Running RL2 for different number of trials
 
-RL$^2$ is used for meta training PPO (GRUPolicy) for different number of trials (n = 10, 25, 50, 75) and the meta trained policy is then meta tested (trained on a riverSwim environment) and the performance is compared. Each trial consists of 5 epochs, each epoch containing 2 episodes, which run for 20 time steps each as mentioned before. The following plot shows the (training) performance of RL2 on different number of trials along with the trained performance of a simple (not using meta learning)  PPO with GRU Policy for reference.
+RL$^2$ is used for meta training PPO (GRUPolicy) for different number of trials (n = 10, 25, 50, 75) and the meta trained policy is then meta tested (trained on a riverSwim environment) and the performance is compared. Each trial consists of 5 epochs, each epoch containing 2 episodes, which run for 20 time steps each as mentioned before. The following plot shows the (training) performance of <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> on different number of trials along with the trained performance of a simple (not using meta learning)  PPO with GRU Policy for reference.
 
 ![Untitled%202.png](images/Untitled%202.png)
 
@@ -84,15 +83,15 @@ RL$^{2}$ is used for meta training PPO (GRUPolicy) for different numbers of epis
 
 ### Ablation 1: Running RL$^{2}$ without resetting the hidden state across different tasks
 
-The original paper proposes that the hidden state be reset across different tasks. Here, RL$^{2}$ has been used without resetting the hidden states between different tasks (RL2 No Reset). It has been compared with policy normally (meta) trained using RL$^{2}$ (Vanilla RL2) and with a normal PPO agent with GRU Policy (PPO GRUPolicy)
+The original paper proposes that the hidden state be reset across different tasks. Here, <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> has been used without resetting the hidden states between different tasks (RL2 No Reset). It has been compared with policy normally (meta) trained using <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> (Vanilla RL2) and with a normal PPO agent with GRU Policy (PPO GRUPolicy)
 
 ![Untitled%204.png](images/Untitled%204.png)
 
 The algorithms still works but the performance is significantly poorer than normal RL$^{2}$, at times even worse than normal PPO with a recurrent policy
 
-### Ablation 2: Running RL$^2$ with vanilla MLP Policy
+### Ablation 2: Running RL2 with vanilla MLP Policy
 
-We drop the GRU Policy and run RL$^2$ on an agent using a Vanilla MLP Policy Instead. The performance of PPO trained (not using meta learning) on the environment using an MLP Policy is as shown. The chosen MLP Policy (1 hidden layer of size 32) converges faster than a GRU Policy. 
+We drop the GRU Policy and run <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> on an agent using a Vanilla MLP Policy Instead. The performance of PPO trained (not using meta learning) on the environment using an MLP Policy is as shown. The chosen MLP Policy (1 hidden layer of size 32) converges faster than a GRU Policy. 
 
 ![Untitled%205.png](images/Untitled%205.png)
 
@@ -100,7 +99,7 @@ Intuitively, the result should be that the algorithm wouldn't work at all or at 
 
 ![Untitled%206.png](images/Untitled%206.png)
 
-RL$^2$ using MLP Policy not only works but in fact, it works better than RL$^2$ with GRU Policy (for the same training time). One reason for this might be that this is due to the fact that the chosen MLP Policy (one hidden layer of size 32) works better than the chosen GRU Policy (hidden size 4) in general. Experimenting with different hidden size might give better performances. However, we can safely conclude that RL$^2$ works even without a GRU Policy. Although, it is arguable that the approach can be called RL$^2$  anymore since the main essence of the algorithm (using recurrent policies) has been removed. It can simply be regarded as pre-training over similar tasks. It remains to investigate whether this performance(RL$^2$ with MLP Policy) can scale to more complex tasks and when the MDPs in the distribution are significantly different (for eg. when the distribution is not just over the rewards and transition probabilities but also the state distribution is different or when the rewards are stochastic, etc.)
+<img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> using MLP Policy not only works but in fact, it works better than <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> with GRU Policy (for the same training time). One reason for this might be that this is due to the fact that the chosen MLP Policy (one hidden layer of size 32) works better than the chosen GRU Policy (hidden size 4) in general. Experimenting with different hidden size might give better performances. However, we can safely conclude that <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> works even without a GRU Policy. Although, it is arguable that the approach can be called <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> anymore since the main essence of the algorithm (using recurrent policies) has been removed. It can simply be regarded as pre-training over similar tasks. It remains to investigate whether this performance(<img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> with MLP Policy) can scale to more complex tasks and when the MDPs in the distribution are significantly different (for eg. when the distribution is not just over the rewards and transition probabilities but also the state distribution is different or when the rewards are stochastic, etc.)
 
 # References
 
@@ -110,6 +109,6 @@ RL$^2$ using MLP Policy not only works but in fact, it works better than RL$^2$ 
 
 [3] Osband, Ian, et. al., (More) Efficient Reinforcement Learning via Posterior Sampling, 2013
 
-# Other Open Source Implementations of RL$^{2}$
+# Other Open Source Implementations of RL2
 
 - [Garage](https://garage.readthedocs.io/en/latest/user/algo_rl2.html)
