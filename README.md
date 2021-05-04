@@ -13,7 +13,6 @@ The paper proposes the use of recurrent models (GRUs) as meta learners across di
 The approach consists of sampling an MDP from a distribution of MDPs <img src="https://render.githubusercontent.com/render/math?math=\mathcal{M}">. Learning on each MDP is referred to as a trial and each trial consists of a fixed number of episodes. After every time step in an episode, the next state, action (that lead to that state), reward (corresponding to the action), and the termination flags are passed to the agent (policy) as input which generates a new hidden state, and the next action from the policy conditioned on the previous hidden states. The hidden states are retained across different episodes of the same task but aren't retained across different tasks. The algorithm used in the paper is TRPO and the approach is evaluated on two fairly simple tasks: Multi-armed bandits and a Tabular RL setting and on a Visual Navigation setting (VizDom) showing that this meta-reinforcement learning algorithm can scale to fairly complex tasks. Another paper (Learning to Reinforcement Learn)<img src="https://render.githubusercontent.com/render/math?math=^{[1]}"> from Deepmind published shortly after this proposes a very similar approach for meta reinforcement learning. 
 
 ![Untitled.png](images/Untitled.png)
-Procedure of Environment Agent Interaction<img src="https://render.githubusercontent.com/render/math?math=^{[2]}">
 
 # Notebook Setup Details
 
@@ -65,7 +64,7 @@ Procedure of Environment Agent Interaction<img src="https://render.githubusercon
 
 ### Experiment 1 : Running RL2 for different number of trials
 
-RL$^2$ is used for meta training PPO (GRUPolicy) for different number of trials (n = 10, 25, 50, 75) and the meta trained policy is then meta tested (trained on a riverSwim environment) and the performance is compared. Each trial consists of 5 epochs, each epoch containing 2 episodes, which run for 20 time steps each as mentioned before. The following plot shows the (training) performance of <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> on different number of trials along with the trained performance of a simple (not using meta learning)  PPO with GRU Policy for reference.
+ <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> is used for meta training PPO (GRUPolicy) for different number of trials (n = 10, 25, 50, 75) and the meta trained policy is then meta tested (trained on a riverSwim environment) and the performance is compared. Each trial consists of 5 epochs, each epoch containing 2 episodes, which run for 20 time steps each as mentioned before. The following plot shows the (training) performance of <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> on different number of trials along with the trained performance of a simple (not using meta learning)  PPO with GRU Policy for reference.
 
 ![Untitled%202.png](images/Untitled%202.png)
 
@@ -73,7 +72,7 @@ RL2 performs best for n = 10 trials which agrees with the paper and the performa
 
 ### Experiment 2 : Running RL2 for across different number of episodes per trial
 
-RL$^{2}$ is used for meta training PPO (GRUPolicy) for different numbers of episodes per epoch (2, 5, 10 and 15 episodes per epoch ⇒ 10, 25, 50 and 75 episodes per task) and then meta tested (trained on a riverSwim environment) and the performance is compared. RL$^{2}$ is run for 10 trials (10 different tasks) in each of the above cases. The given plot shows the performance for different episodes per epoch along with the performance of simple (not Meta Trained) PPO (with GRU Policy).
+<img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> is used for meta training PPO (GRUPolicy) for different numbers of episodes per epoch (2, 5, 10 and 15 episodes per epoch ⇒ 10, 25, 50 and 75 episodes per task) and then meta tested (trained on a riverSwim environment) and the performance is compared. <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> is run for 10 trials (10 different tasks) in each of the above cases. The given plot shows the performance for different episodes per epoch along with the performance of simple (not Meta Trained) PPO (with GRU Policy).
 
 ![Untitled%203.png](images/Untitled%203.png)
 
@@ -81,7 +80,7 @@ RL$^{2}$ is used for meta training PPO (GRUPolicy) for different numbers of epis
 
 ## Ablations
 
-### Ablation 1: Running RL$^{2}$ without resetting the hidden state across different tasks
+### Ablation 1: Running RL2 without resetting the hidden state across different tasks
 
 The original paper proposes that the hidden state be reset across different tasks. Here, <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> has been used without resetting the hidden states between different tasks (RL2 No Reset). It has been compared with policy normally (meta) trained using <img src="https://render.githubusercontent.com/render/math?math=RL^{2}"> (Vanilla RL2) and with a normal PPO agent with GRU Policy (PPO GRUPolicy)
 
