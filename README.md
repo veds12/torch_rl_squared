@@ -1,4 +1,4 @@
-# RL^2: Fast Reinforcement Learning via Slow Reinforcement Learning
+# RL<img src="https://render.githubusercontent.com/render/math?math=^{2}">: Fast Reinforcement Learning via Slow Reinforcement Learning
 
 # Summary of the Paper
 
